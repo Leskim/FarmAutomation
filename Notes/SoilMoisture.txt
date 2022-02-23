@@ -1,0 +1,16 @@
+Connect soil moisture sensor to get soil moisture readings
+Add logic to pump water in low moisture and shut off to save on water 
+Soil moisture readings should go to the server same as dhT11 readings
+
+
+Pump 5v conecct inside water
+
+Soil Moisture --- A0 ---> A0, VCC ---> 5V, GND ---> GND
+Pump --- Red ----> Pin 4, Black ----> GND
+
+Immerse pump in water
+
+
+Still to do add logics for certain crops because all crops need different soil moisture content
+Must incorporate with nodemcu to work though so the user can input the crop being planted
+
