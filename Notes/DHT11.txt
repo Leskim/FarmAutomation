@@ -1,0 +1,7 @@
+Include DHTLib library, have it in my Arduino Libraries ... think from Adafruit
+
+DHT11 Pin ---> pin 8
+call dht Sensor to get sensor readings with Sensor.humidity or Sensor.temp
+
+s ---> pin 8, next to s ---> 5V ---> right pin ---> GND
+
