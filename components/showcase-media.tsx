@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import { useEffect, useState } from "react"
-import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react"
+import { ArrowLeft, ArrowRight, Play } from "lucide-react"
 
 const gallerySlides = [
   {
@@ -63,26 +63,17 @@ const projectClips = [
 
 export function ProjectGallery() {
   const [activeSlide, setActiveSlide] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
   const currentSlide = gallerySlides[activeSlide]
 
   useEffect(() => {
-    if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return
 
     const timer = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % gallerySlides.length)
     }, 10000)
 
     return () => window.clearInterval(timer)
-  }, [activeSlide, isPaused])
-
-  function showPrevious() {
-    setActiveSlide((current) => (current - 1 + gallerySlides.length) % gallerySlides.length)
-  }
-
-  function showNext() {
-    setActiveSlide((current) => (current + 1) % gallerySlides.length)
-  }
+  }, [activeSlide])
 
   return (
     <div
@@ -90,12 +81,6 @@ export function ProjectGallery() {
       role="region"
       aria-roledescription="carousel"
       aria-label="Farm Automation project photos and screenshots"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-      onFocus={() => setIsPaused(true)}
-      onBlur={(event) => {
-        if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsPaused(false)
-      }}
     >
         <div className="gallery-photo-wrap">
           <Image
@@ -114,10 +99,6 @@ export function ProjectGallery() {
           <span className="gallery-counter">{String(activeSlide + 1).padStart(2, "0")} / {String(gallerySlides.length).padStart(2, "0")}</span>
         </div>
         <div className="gallery-controls">
-          <div className="gallery-arrows">
-            <button type="button" onClick={showPrevious} aria-label="Previous project photo"><ArrowLeft aria-hidden="true" /></button>
-            <button type="button" onClick={showNext} aria-label="Next project photo"><ArrowRight aria-hidden="true" /></button>
-          </div>
           <div className="gallery-dots" aria-label="Choose a project photo">
 
           {gallerySlides.map((slide, index) => (
@@ -132,14 +113,6 @@ export function ProjectGallery() {
           ))}
         </div>
         <span className="gallery-current-title">{currentSlide.title.replace(/^\d+ — /, "")}</span>
-        <button
-          className="gallery-pause"
-          type="button"
-          onClick={() => setIsPaused((paused) => !paused)}
-          aria-label={isPaused ? "Play slideshow" : "Pause slideshow"}
-        >
-          {isPaused ? <Play aria-hidden="true" /> : <Pause aria-hidden="true" />}
-        </button>
       </div>
     </div>
   )
