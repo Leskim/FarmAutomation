@@ -239,55 +239,51 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .gallery-heading .section-heading p { max-width: 570px; }
 .gallery-count { flex: 0 0 auto; padding-bottom: 11px; color: #74806f; font-size: .92rem; font-weight: 700; letter-spacing: .13em; }
 .project-gallery { overflow: hidden; border: 1px solid #dce1d4; background: var(--white); box-shadow: 0 15px 46px rgba(25, 51, 30, .1); }
-.gallery-photo-wrap { position: relative; isolation: isolate; height: clamp(360px, 51vw, 590px); overflow: hidden; background: #18291e; }
-.gallery-photo { z-index: -1; object-fit: cover; object-position: center; animation: gallery-reveal .45s ease both; }
-.gallery-photo-shade { position: absolute; inset: 0; background: linear-gradient(0deg, rgba(11, 31, 19, .86), rgba(11, 31, 19, 0) 52%), linear-gradient(90deg, rgba(9, 28, 17, .15), transparent 65%); pointer-events: none; }
-.gallery-counter { position: absolute; top: 23px; left: 25px; padding: 10px 12px; color: white; background: rgba(17, 39, 24, .76); font-size: .94rem; font-weight: 700; letter-spacing: .15em; }
-.gallery-caption { position: absolute; left: clamp(22px, 5vw, 64px); right: 92px; bottom: clamp(24px, 5vw, 54px); color: #fffefa; animation: gallery-reveal .45s ease both; }
-.gallery-caption > span { display: block; font: 500 clamp(2rem, 4vw, 3.5rem)/1.12 'Playfair Display', Georgia, serif; }
-.gallery-caption p { max-width: 620px; margin: 11px 0 0; color: rgba(255, 255, 250, .84); font-size: 1.2rem; line-height: 1.6; }
-.gallery-arrows { position: absolute; right: 24px; bottom: 27px; display: flex; gap: 9px; }
-.gallery-arrows button, .gallery-pause { width: 48px; height: 48px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.58); background: rgba(17,39,24,.68); color: #fffefa; cursor: pointer; transition: background-color .2s ease, transform .2s ease; }
-.gallery-arrows button:hover, .gallery-pause:hover { background: var(--forest); transform: translateY(-2px); }
-.gallery-arrows svg { width: 21px; height: 21px; }
-.gallery-controls { min-height: 73px; padding: 14px 22px; display: flex; align-items: center; gap: 18px; }
+.gallery-photo-wrap { position: relative; height: clamp(360px, 51vw, 70vh); overflow: hidden; background: #fffefa; }
+.gallery-photo { object-fit: contain; object-position: center; animation: gallery-reveal .45s ease both; }
+.gallery-caption { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "title count" "description description"; align-items: center; gap: 7px 16px; padding: 22px clamp(22px, 5vw, 64px) 8px; color: var(--forest); animation: gallery-reveal .45s ease both; }
+.gallery-caption > span:first-child { grid-area: title; font: 500 clamp(1.65rem, 3vw, 2.5rem)/1.15 'Playfair Display', Georgia, serif; }
+.gallery-caption p { grid-area: description; max-width: 720px; margin: 0; color: #65715f; font-size: 1.05rem; line-height: 1.55; }
+.gallery-counter { grid-area: count; color: #74806f; font-size: .9rem; font-weight: 700; letter-spacing: .12em; }
+.gallery-arrows { display: flex; gap: 8px; }
+.gallery-arrows button, .gallery-pause { width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid #d9dfd2; background: #f1f3eb; color: var(--forest); cursor: pointer; transition: background-color .2s ease, transform .2s ease; }
+.gallery-arrows button:hover, .gallery-pause:hover { background: #e3e9db; transform: translateY(-2px); }
+.gallery-arrows svg { width: 20px; height: 20px; }
+.gallery-controls { min-height: 72px; padding: 12px clamp(16px, 3vw, 32px) 16px; display: flex; align-items: center; gap: 18px; }
 .gallery-dots { display: flex; align-items: center; gap: 8px; }
 .gallery-dot { width: 10px; height: 10px; padding: 0; border: 1px solid #84927b; border-radius: 99px; background: transparent; cursor: pointer; transition: width .2s ease, background-color .2s ease; }
 .gallery-dot.is-active { width: 25px; border-color: var(--forest); background: var(--forest); }
 .gallery-current-title { flex: 1; color: #52624f; font-size: 1rem; font-weight: 600; }
-.gallery-pause { flex: 0 0 44px; width: 44px; height: 44px; border-color: #d9dfd2; background: #f1f3eb; color: var(--forest); }
+.gallery-pause { flex: 0 0 44px; width: 44px; height: 44px; }
 .gallery-pause svg { width: 18px; height: 18px; }
 
 .video-section { padding: clamp(72px, 9vw, 126px) 0; color: #f4f3e9; background: #122d20; }
-.video-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 35px; }
+.video-section .section-wrap { width: 100%; }
+.video-heading { display: flex; align-items: flex-end; justify-content: space-between; gap: 28px; margin-bottom: 35px; padding: 0 6.1%; }
 .video-eyebrow { color: #bbc99f; }
 .video-heading h2 { margin: 15px 0 0; color: #f8f6ec; font: 500 clamp(3rem, 5vw, 5.1rem)/1.08 'Playfair Display', Georgia, serif; letter-spacing: -.04em; }
 .video-heading h2 em { color: #b5ca94; }
-.video-heading > p { max-width: 410px; margin: 0 0 4px; color: #c6d0bd; font-size: 1.1rem; line-height: 1.7; }
-.video-showcase { display: grid; grid-template-columns: minmax(0, 1fr) minmax(250px, .34fr); gap: 14px; align-items: stretch; }
-.video-player-wrap { position: relative; min-width: 0; overflow: hidden; background: #09170f; }
-.video-player { display: block; width: 100%; height: 100%; min-height: 260px; aspect-ratio: 16 / 9; object-fit: contain; background: #07130c; }
-.video-live-label { position: absolute; top: 15px; left: 15px; display: inline-flex; align-items: center; gap: 9px; padding: 10px 12px; color: white; background: rgba(18, 45, 32, .82); font-size: .85rem; font-weight: 700; letter-spacing: .12em; pointer-events: none; }
-.video-live-label .live-dot { width: 6px; height: 6px; }
+.video-showcase { display: grid; grid-template-columns: 1fr; gap: 16px; align-items: stretch; }
+.video-player-wrap { position: relative; width: 100%; min-width: 0; overflow: hidden; background: #09170f; }
+.video-player { display: block; width: 100%; height: 60vh; min-height: 260px; object-fit: contain; background: #07130c; }
 .video-open-link { position: absolute; top: 15px; right: 15px; display: inline-flex; align-items: center; gap: 7px; padding: 10px 12px; color: #fffefa; background: rgba(18, 45, 32, .82); font-size: .95rem; font-weight: 700; }
 .video-open-link svg { width: 17px; height: 17px; }
-.video-playlist { display: flex; flex-direction: column; background: rgba(255,255,255,.05); }
-.video-clip { min-height: 87px; width: 100%; padding: 15px 17px; display: grid; grid-template-columns: 39px 1fr 23px; align-items: center; gap: 12px; border: 0; border-bottom: 1px solid rgba(255,255,255,.12); text-align: left; color: #e6ebdf; background: transparent; cursor: pointer; font: inherit; font-size: 1.05rem; line-height: 1.45; transition: background-color .2s ease; }
+.video-carousel-controls { width: 100%; padding: 0 6.1%; display: flex; align-items: center; gap: 14px; }
+.video-carousel-arrow { flex: 0 0 44px; width: 44px; height: 44px; display: grid; place-items: center; border: 1px solid rgba(255,255,255,.25); color: #eff3e8; background: rgba(255,255,255,.06); cursor: pointer; transition: background-color .2s ease; }
+.video-carousel-arrow:hover { background: #294b34; }
+.video-carousel-arrow svg { width: 19px; height: 19px; }
+.video-playlist { flex: 1; min-width: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: rgba(255,255,255,.05); }
+.video-clip { min-height: 68px; width: 100%; padding: 12px 17px; display: grid; grid-template-columns: 39px 1fr 23px; align-items: center; gap: 12px; border: 0; border-right: 1px solid rgba(255,255,255,.12); text-align: left; color: #e6ebdf; background: transparent; cursor: pointer; font: inherit; font-size: 1rem; line-height: 1.4; transition: background-color .2s ease; }
+.video-clip:last-child { border-right: 0; }
 .video-clip:hover { background: rgba(255,255,255,.08); }
-.video-clip.is-selected { background: #294b34; box-shadow: inset 3px 0 #b5ca94; }
+.video-clip.is-selected { background: #294b34; box-shadow: inset 0 3px #b5ca94; }
 .video-clip-number { color: #aab99e; font: 500 1rem 'Playfair Display', Georgia, serif; }
 .video-clip svg { width: 18px; height: 18px; color: #bed0a1; }
-.streaming-note { margin-top: 21px; padding: 21px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; border: 1px solid rgba(228, 235, 214, .18); background: rgba(255,255,255,.045); }
-.streaming-note strong { color: #edf1e4; font-size: 1.08rem; }
-.streaming-note p { max-width: 730px; margin: 7px 0 0; color: #c5d0bd; font-size: .97rem; line-height: 1.65; }
-.streaming-note a { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 8px; color: #d2e2bb; font-size: .97rem; font-weight: 700; text-decoration: underline; text-underline-offset: 4px; }
-.streaming-note svg { width: 17px; height: 17px; }
-:where(.gallery-arrows button, .gallery-dot, .gallery-pause, .video-clip, .video-open-link, .streaming-note a, .shop-link):focus-visible { outline: 3px solid #9bbd72; outline-offset: 3px; }
+:where(.gallery-arrows button, .gallery-dot, .gallery-pause, .video-carousel-arrow, .video-clip, .video-open-link, .shop-link):focus-visible { outline: 3px solid #9bbd72; outline-offset: 3px; }
 @keyframes gallery-reveal { from { opacity: .72; transform: scale(1.012); } to { opacity: 1; transform: scale(1); } }
 
 @media (max-width: 1040px) {
   .comparison-grid { grid-template-columns: 1fr 1fr; }
-  .video-showcase { grid-template-columns: minmax(0, 1fr) minmax(220px, .4fr); }
 }
 @media (max-width: 720px) {
   .part-image { height: 130px; margin: -13px -12px 13px; }
@@ -296,29 +292,29 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .comparison-notes { grid-column: 1; padding: 20px; }
   .comparison-intro h2, .video-heading h2 { font-size: clamp(2.5rem, 11vw, 3.5rem); }
   .gallery-count { padding: 0; }
-  .gallery-photo-wrap { height: clamp(330px, 88vw, 480px); }
-  .gallery-caption { right: 22px; bottom: 89px; }
-  .gallery-caption > span { font-size: clamp(1.8rem, 7vw, 2.5rem); }
-  .gallery-caption p { font-size: 1rem; }
-  .gallery-arrows { right: 18px; bottom: 18px; }
-  .gallery-arrows button { width: 44px; height: 44px; }
-  .gallery-controls { min-height: 69px; padding: 12px 14px; gap: 10px; }
+  .gallery-photo-wrap { height: clamp(330px, 88vw, 60vh); }
+  .gallery-caption { padding: 18px 16px 6px; gap: 6px 10px; }
+  .gallery-caption > span:first-child { font-size: clamp(1.55rem, 6vw, 2.1rem); }
+  .gallery-caption p { font-size: .95rem; }
+  .gallery-arrows button { width: 40px; height: 40px; }
+  .gallery-controls { min-height: 64px; padding: 10px 14px 14px; gap: 10px; }
+  .gallery-arrows { gap: 6px; }
   .gallery-dots { gap: 6px; }
   .gallery-dot { width: 8px; height: 8px; }
   .gallery-dot.is-active { width: 19px; }
   .gallery-current-title { font-size: .88rem; }
   .gallery-pause { flex-basis: 40px; width: 40px; height: 40px; }
-  .video-heading { align-items: flex-start; flex-direction: column; }
-  .video-showcase { grid-template-columns: 1fr; }
-  .video-player { min-height: auto; }
-  .video-playlist { display: grid; grid-template-columns: 1fr; }
-  .video-clip { min-height: 70px; }
-  .streaming-note { align-items: flex-start; flex-direction: column; gap: 15px; padding: 19px; }
-  .video-live-label { max-width: calc(100% - 110px); font-size: .7rem; }
+  .video-heading { align-items: flex-start; flex-direction: column; padding: 0 6%; }
+  .video-player { height: 60vh; min-height: 240px; }
+  .video-carousel-controls { padding: 0 5%; gap: 8px; }
+  .video-carousel-arrow { flex-basis: 36px; width: 36px; height: 36px; }
+  .video-playlist { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .video-clip { min-height: 68px; grid-template-columns: 1fr; justify-items: center; gap: 4px; padding: 8px 5px; font-size: .75rem; line-height: 1.25; text-align: center; }
+  .video-clip svg { width: 14px; height: 14px; }
 }
 @media (max-width: 390px) {
-  .gallery-counter { top: 14px; left: 14px; font-size: .75rem; }
-  .gallery-caption { left: 16px; right: 16px; }
+  .gallery-counter { font-size: .75rem; }
+  .gallery-caption { padding-inline: 12px; }
   .gallery-caption p { font-size: .9rem; }
   .gallery-controls { gap: 8px; }
   .gallery-dots { gap: 4px; }

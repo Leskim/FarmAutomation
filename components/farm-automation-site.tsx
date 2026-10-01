@@ -310,13 +310,8 @@ function VideoSection() {
             <span className="eyebrow video-eyebrow">Watch the original project</span>
             <h2 id="video-title">See the system <em>in motion.</em></h2>
           </div>
-          <p>The featured clip is the original repository video from 10:43. Pick another archive clip below; playback starts on demand so the whole file is not preloaded.</p>
         </div>
         <VideoShowcase />
-        <div className="streaming-note">
-          <div><strong>For the smoothest playback of your 500 MB+ master video</strong><p>Upload it to YouTube as <em>Unlisted</em> and embed that player, or use Cloudflare Stream for adaptive-quality streaming. A large MP4 can still buffer on a slow connection even when served in chunks.</p></div>
-          <a href="https://studio.youtube.com/" target="_blank" rel="noreferrer">YouTube Studio · upload as Unlisted <ArrowUpRight aria-hidden="true" /></a>
-        </div>
       </div>
     </section>
   )
