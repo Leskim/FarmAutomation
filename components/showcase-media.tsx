@@ -71,7 +71,7 @@ export function ProjectGallery() {
 
     const timer = window.setInterval(() => {
       setActiveSlide((current) => (current + 1) % gallerySlides.length)
-    }, 6500)
+    }, 10000)
 
     return () => window.clearInterval(timer)
   }, [activeSlide, isPaused])
@@ -97,29 +97,29 @@ export function ProjectGallery() {
         if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setIsPaused(false)
       }}
     >
-      <div className="gallery-photo-wrap">
-        <Image
-          key={currentSlide.src}
-          className="gallery-photo"
-          src={currentSlide.src}
-          alt={currentSlide.alt}
-          fill
-          sizes="(max-width: 720px) 88vw, 66vw"
-          priority
-        />
-        <div className="gallery-photo-shade" />
-        <span className="gallery-counter">{String(activeSlide + 1).padStart(2, "0")} / {String(gallerySlides.length).padStart(2, "0")}</span>
-        <div className="gallery-caption" key={currentSlide.title}>
+        <div className="gallery-photo-wrap">
+          <Image
+            key={currentSlide.src}
+            className="gallery-photo"
+            src={currentSlide.src}
+            alt={currentSlide.alt}
+            fill
+            sizes="(max-width: 720px) 100vw, 100vw"
+            priority={activeSlide === 0}
+          />
+        </div>
+        <div className="gallery-caption" key={currentSlide.title} aria-live="polite">
           <span>{currentSlide.title}</span>
           <p>{currentSlide.description}</p>
+          <span className="gallery-counter">{String(activeSlide + 1).padStart(2, "0")} / {String(gallerySlides.length).padStart(2, "0")}</span>
         </div>
-        <div className="gallery-arrows">
-          <button type="button" onClick={showPrevious} aria-label="Previous project photo"><ArrowLeft aria-hidden="true" /></button>
-          <button type="button" onClick={showNext} aria-label="Next project photo"><ArrowRight aria-hidden="true" /></button>
-        </div>
-      </div>
-      <div className="gallery-controls">
-        <div className="gallery-dots" aria-label="Choose a project photo">
+        <div className="gallery-controls">
+          <div className="gallery-arrows">
+            <button type="button" onClick={showPrevious} aria-label="Previous project photo"><ArrowLeft aria-hidden="true" /></button>
+            <button type="button" onClick={showNext} aria-label="Next project photo"><ArrowRight aria-hidden="true" /></button>
+          </div>
+          <div className="gallery-dots" aria-label="Choose a project photo">
+
           {gallerySlides.map((slide, index) => (
             <button
               key={slide.src}
@@ -149,30 +149,42 @@ export function VideoShowcase() {
   const [activeClip, setActiveClip] = useState(0)
   const clip = projectClips[activeClip]
 
+  function showPrevious() {
+    setActiveClip((current) => (current - 1 + projectClips.length) % projectClips.length)
+  }
+
+  function showNext() {
+    setActiveClip((current) => (current + 1) % projectClips.length)
+  }
+
   return (
-    <div className="video-showcase">
+    <div className="video-showcase" role="region" aria-roledescription="carousel" aria-label="Original Farm Automation project videos">
       <div className="video-player-wrap">
         <video key={clip.src} className="video-player" aria-label={clip.title} controls preload="none" poster={clip.poster} playsInline>
           <source src={clip.src} type="video/mp4" />
           Your browser does not support embedded video. <a href={clip.src}>Open the original project clip.</a>
         </video>
-        <span className="video-live-label"><span className="live-dot" /> ORIGINAL REPOSITORY FOOTAGE</span>
         <a className="video-open-link" href={clip.src} target="_blank" rel="noreferrer">Open clip <ArrowRight aria-hidden="true" /></a>
       </div>
-      <div className="video-playlist" role="group" aria-label="Choose an original project clip">
-        {projectClips.map((item, index) => (
-          <button
-            className={index === activeClip ? "video-clip is-selected" : "video-clip"}
-            key={item.src}
-            type="button"
-            aria-pressed={index === activeClip}
-            onClick={() => setActiveClip(index)}
-          >
-            <span className="video-clip-number">0{index + 1}</span>
-            <span>{item.title}</span>
-            <Play aria-hidden="true" />
-          </button>
-        ))}
+        <div className="video-carousel-controls" role="group" aria-label="Video carousel controls">
+
+        <button className="video-carousel-arrow" type="button" onClick={showPrevious} aria-label="Previous video"><ArrowLeft aria-hidden="true" /></button>
+        <div className="video-playlist" role="group" aria-label="Choose an original project clip">
+          {projectClips.map((item, index) => (
+            <button
+              className={index === activeClip ? "video-clip is-selected" : "video-clip"}
+              key={item.src}
+              type="button"
+              aria-pressed={index === activeClip}
+              onClick={() => setActiveClip(index)}
+            >
+              <span className="video-clip-number">0{index + 1}</span>
+              <span>{item.title}</span>
+              <Play aria-hidden="true" />
+            </button>
+          ))}
+        </div>
+        <button className="video-carousel-arrow" type="button" onClick={showNext} aria-label="Next video"><ArrowRight aria-hidden="true" /></button>
       </div>
     </div>
   )
