@@ -1,8 +1,6 @@
 
 
-#define BLYNK_TEMPLATE_ID "TMPLyN1ItDNO"
-#define BLYNK_DEVICE_NAME "Lesley"
-#define BLYNK_AUTH_TOKEN "4dfegjLPVe7OUJfy26I-v1YEKczR-LUU"
+#include "../secrets.h"
 
 #define BLYNK_PRINT Serial
 #include <ESP8266WiFi.h>
@@ -22,9 +20,8 @@ WiFiClient wifiClient;
 #include <DHT.h>
 
 char auth[] = BLYNK_AUTH_TOKEN;
-
-char ssid[] = "Saul254";  // type your wifi name
-char pass[] = "Leskim12";  // type your wifi password
+char ssid[] = FARM_WIFI_SSID;  // KEEP HIDDEN: never publish your real Wi-Fi SSID or name.
+char pass[] = FARM_WIFI_PASSWORD;  // KEEP HIDDEN: never publish your real Wi-Fi password.
 
 #define DHTPIN 2          // Mention the digital pin where you connected 
 #define DHTTYPE DHT11     // DHT 11  
@@ -122,7 +119,7 @@ void setup(){
   timer.setInterval(2500L, sendSensor);
   WiFi.begin();
   WiFi.mode(WIFI_AP);
- WiFi.softAP("Saul254", "Leskim12");
+ WiFi.softAP(FARM_AP_SSID, FARM_AP_PASSWORD); // KEEP HIDDEN: never publish the real hotspot password.
  while (WiFi.softAPgetStationNum() !=1){ //loop here while no AP is connected to this station
       Serial.print(".");
       delay(100);                           
