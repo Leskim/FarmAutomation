@@ -7,9 +7,9 @@ import { ArrowLeft, ArrowRight, Pause, Play } from "lucide-react"
 const gallerySlides = [
   {
     src: "/images/sensor-connections.jpg",
-    alt: "DHT11 and soil moisture sensor leads connected to the farm prototype",
-    title: "01 — Sensor connections",
-    description: "The DHT11 and soil probe meet at the controller beside the growing bed.",
+    alt: "Firmware screenshot showing the DHT11 pin definition and sensor-reading routine",
+    title: "01 — Read the sensors",
+    description: "The project sketch samples soil moisture and reads ambient temperature and humidity from the DHT11.",
   },
   {
     src: "/images/serial-readings.jpg",
@@ -24,46 +24,40 @@ const gallerySlides = [
     description: "The app setup connects project telemetry to a phone-friendly dashboard.",
   },
   {
-    src: "/images/blynky-connect.jpg",
-    alt: "Blynk connection code from the project editor",
-    title: "04 — Connect the device",
-    description: "The sketch sends sensor values to Blynk virtual pins for remote viewing.",
-  },
-  {
     src: "/images/blynk-dashboard.jpg",
     alt: "Farm automation Blynk dashboard on a desktop screen",
-    title: "05 — Blynk dashboard",
+    title: "04 — Blynk dashboard",
     description: "A live view makes it easier to check the garden without standing by the bed.",
   },
   {
     src: "/images/pump-dashboard.jpg",
     alt: "Blynk dashboard screenshot for controlling the irrigation pump",
-    title: "06 — Pump control",
+    title: "05 — Pump control",
     description: "A dashboard control provides a manual way to switch the watering output.",
   },
   {
     src: "/images/pump-status.jpg",
     alt: "Blynk pump status screenshot showing the watering control state",
-    title: "07 — Water when needed",
+    title: "06 — Water when needed",
     description: "The pump control sits alongside the sensor-led watering workflow.",
   },
 ]
 
 const projectClips = [
   {
-    title: "Original project clip · 10:48",
-    src: "https://media.githubusercontent.com/media/Leskim/FarmAutomation/soilmoisture/NovaBlynky/VID20220520104811.mp4",
-    poster: "/images/pump-dashboard.jpg",
-  },
-  {
-    title: "Original project clip · 10:46",
-    src: "https://media.githubusercontent.com/media/Leskim/FarmAutomation/soilmoisture/NovaBlynky/VID20220520104626.mp4",
+    title: "Featured repository video · 10:43",
+    src: "https://media.githubusercontent.com/media/Leskim/FarmAutomation/soilmoisture/NovaBlynky/VID20220520104322.mp4",
     poster: "/images/sensor-connections.jpg",
   },
   {
-    title: "Original project clip · 10:43",
-    src: "https://media.githubusercontent.com/media/Leskim/FarmAutomation/soilmoisture/NovaBlynky/VID20220520104322.mp4",
+    title: "Repository video · 10:46",
+    src: "https://media.githubusercontent.com/media/Leskim/FarmAutomation/soilmoisture/NovaBlynky/VID20220520104626.mp4",
     poster: "/images/blynk-dashboard.jpg",
+  },
+  {
+    title: "Repository video · 10:48",
+    src: "https://media.githubusercontent.com/media/Leskim/FarmAutomation/soilmoisture/NovaBlynky/VID20220520104811.mp4",
+    poster: "/images/pump-dashboard.jpg",
   },
 ]
 
@@ -158,7 +152,7 @@ export function VideoShowcase() {
   return (
     <div className="video-showcase">
       <div className="video-player-wrap">
-        <video key={clip.src} className="video-player" controls preload="none" poster={clip.poster} playsInline>
+        <video key={clip.src} className="video-player" aria-label={clip.title} controls preload="none" poster={clip.poster} playsInline>
           <source src={clip.src} type="video/mp4" />
           Your browser does not support embedded video. <a href={clip.src}>Open the original project clip.</a>
         </video>

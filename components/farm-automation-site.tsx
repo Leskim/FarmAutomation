@@ -64,8 +64,8 @@ const parts: Part[] = [
     name: "DHT11 temperature & humidity",
     detail: "Reads ambient temperature and relative humidity; both values are sent to the Blynk dashboard.",
     price: 200,
-    image: suppliedImages.prototype,
-    imageAlt: "The blue DHT11 temperature and humidity sensor attached to the prototype",
+    image: "/images/dht11-module.png",
+    imageAlt: "Representative product photograph of a blue DHT11 temperature and humidity sensor module",
     alternative: "Bare DHT11 sensor",
     alternativePrice: "~ KSh 150",
     search: "DHT11 temperature humidity sensor module",
@@ -79,8 +79,8 @@ const parts: Part[] = [
     name: "Soil moisture probe",
     detail: "Samples soil moisture through the analog input. Calibrate its dry/wet readings in the actual soil before setting a watering threshold.",
     price: 150,
-    image: suppliedImages.soilBed,
-    imageAlt: "Moisture probe installed in the project garden bed",
+    image: "/images/soil-moisture-probe.png",
+    imageAlt: "Representative product photograph of a capacitive soil-moisture probe",
     alternative: "Basic resistive probe",
     alternativePrice: "~ KSh 100",
     search: "soil moisture sensor module Kenya",
@@ -94,8 +94,8 @@ const parts: Part[] = [
     name: "Mini DC submersible pump",
     detail: "The small pump moves water from a reservoir when the controller requests watering. Keep the pump submerged while running.",
     price: 300,
-    image: suppliedImages.waterSetup,
-    imageAlt: "The project garden, pump, water bucket and connecting tubing",
+    image: "/images/mini-water-pump.png",
+    imageAlt: "Representative product photograph of a small DC submersible water pump",
     alternative: "3–6 V micro pump",
     alternativePrice: "~ KSh 250",
     search: "mini DC submersible water pump Kenya",
@@ -109,8 +109,8 @@ const parts: Part[] = [
     name: "Pump switching driver",
     detail: "A relay or correctly rated transistor/MOSFET driver protects the microcontroller from motor current and inductive kickback. Not itemized in the Novatech quote.",
     price: 250,
-    image: suppliedImages.prototype,
-    imageAlt: "The prototype enclosure with its controller and switching hardware",
+    image: "/images/pump-relay-module.png",
+    imageAlt: "Representative product photograph of a blue single-channel pump relay module",
     search: "5V relay module motor driver Kenya",
     tag: "Recommended",
   },
@@ -247,34 +247,38 @@ function ComponentsSection() {
 
 function BluePillComparison() {
   return (
-    <section className="comparison-section section-wrap" aria-labelledby="comparison-title">
-      <div className="comparison-intro">
-        <span className="eyebrow eyebrow-green">A lower-cost controller?</span>
-        <h2 id="comparison-title">Blue Pill vs <em>NodeMCU.</em></h2>
-        <p>The STM32 Blue Pill can lower the microcontroller-only bill. It does not include Wi-Fi, so the cellular version needs another modem—and that changes the total.</p>
-      </div>
-      <div className="comparison-grid">
-        <article className="comparison-card">
-          <span className="comparison-kicker">BOARD ONLY</span>
-          <h3>STM32 Blue Pill</h3>
-          <strong className="comparison-price">~ KSh 450–700</strong>
-          <p>Compared with the KSh 750 Wi-Fi board on the quote, the estimated saving is only about KSh 50–300—and the Blue Pill has no built-in Wi-Fi.</p>
-          <ShopLink query="STM32F103C8T6 Blue Pill board Kenya">Check Blue Pill listings</ShopLink>
-        </article>
-        <article className="comparison-card comparison-card-featured">
-          <span className="comparison-kicker">CELLULAR ADD-ON</span>
-          <h3>SIM800L GSM / GPRS modem</h3>
-          <strong className="comparison-price">~ KSh 850–1,500</strong>
-          <p>Blue Pill + modem becomes roughly KSh 1,300–2,200 before a SIM, data bundles or power supply—so it is not cheaper than the quoted board by itself.</p>
-          <ShopLink query="SIM800L GSM GPRS module Kenya">Check SIM800L listings</ShopLink>
-        </article>
-        <div className="comparison-notes">
-          <span><Radio aria-hidden="true" /> SIM800L is 2G only; check local GPRS coverage before buying.</span>
-          <span><CircuitBoard aria-hidden="true" /> Rewrite the ESP8266 Blynk connection for STM32 + TinyGSM / modem UART.</span>
-          <span><ShieldCheck aria-hidden="true" /> Give the modem a suitable regulated supply for brief high-current bursts; do not power it from a Blue Pill GPIO.</span>
+    <section className="comparison-section" aria-labelledby="comparison-title">
+      <div className="section-wrap">
+        <div className="comparison-intro">
+          <span className="eyebrow eyebrow-green">A lower-cost controller?</span>
+          <h2 id="comparison-title">Blue Pill vs <em>the quoted board.</em></h2>
+          <p>The STM32 Blue Pill can save a little if the project already has network connectivity. To add a SIM card, however, it needs a separate cellular modem and supply.</p>
         </div>
+        <div className="comparison-grid">
+          <article className="comparison-card">
+            <span className="comparison-kicker">REPLACE THE KSh 750 BOARD</span>
+            <h3>STM32 Blue Pill</h3>
+            <strong className="comparison-price">~ KSh 450–700</strong>
+            <p>Swapping only the quoted board takes the KSh 1,400 parts total to about <strong>KSh 1,100–1,350</strong>—a board-only saving of <strong>KSh 50–300 (about 4–21%)</strong>.</p>
+            <p>The Blue Pill has no built-in Wi-Fi. Keep the original Wi-Fi plan only if a separate network module is already available.</p>
+            <ShopLink query="STM32F103C8T6 Blue Pill board Kenya">Check Blue Pill listings</ShopLink>
+          </article>
+          <article className="comparison-card comparison-card-featured">
+            <span className="comparison-kicker">ADD CELLULAR INTERNET</span>
+            <h3>STM32 + SIM800L modem</h3>
+            <strong className="comparison-price">~ KSh 1,950–2,850 total</strong>
+            <p>Starting with the same KSh 1,400 parts quote, replace the KSh 750 board with a Blue Pill and add an estimated KSh 850–1,500 SIM800L modem.</p>
+            <p>That is roughly <strong>KSh 550–1,450 more</strong> than the quoted build, before SIM/data bundles and a suitable modem supply. It adds mobile-network access, not a cheaper equivalent to Wi-Fi.</p>
+            <ShopLink query="SIM800L GSM GPRS module Kenya">Check SIM800L listings</ShopLink>
+          </article>
+          <div className="comparison-notes">
+            <span><Radio aria-hidden="true" /> SIM800L uses 2G GSM/GPRS. Verify supported 2G service and signal with your Kenyan carrier at the farm before buying.</span>
+            <span><CircuitBoard aria-hidden="true" /> Rework the ESP8266 Blynk firmware for an STM32 UART and a compatible cellular/Blynk library such as TinyGSM.</span>
+            <span><ShieldCheck aria-hidden="true" /> Use a regulator sized for the modem’s brief current peaks. Never power it from a Blue Pill GPIO or its 3.3 V pin.</span>
+          </div>
+        </div>
+        <p className="comparison-footnote">Planning ranges only—not a Novatech quote. Sensor and pump prices are held constant in these totals. The quote screenshot names an ESP32 board, while this repository’s network sketch targets ESP8266/NodeMCU; confirm the exact board before comparing like for like.</p>
       </div>
-      <p className="comparison-footnote">These are planning ranges, not a vendor quote. A Blue Pill makes sense if its lower board cost matters and connectivity is already available; cellular is useful where Wi-Fi is absent, but is unlikely to reduce the total cost here.</p>
     </section>
   )
 }
@@ -289,7 +293,7 @@ function GallerySection() {
             <h2 id="gallery-title">The build, <em>in the field.</em></h2>
             <p>Step through the real setup, live readings and pump-control screenshots.</p>
           </div>
-          <span className="gallery-count">01—07 · PROJECT ARCHIVE</span>
+          <span className="gallery-count">01—06 · PROJECT ARCHIVE</span>
         </div>
         <ProjectGallery />
       </div>
@@ -306,12 +310,12 @@ function VideoSection() {
             <span className="eyebrow video-eyebrow">Watch the original project</span>
             <h2 id="video-title">See the system <em>in motion.</em></h2>
           </div>
-          <p>Three original repository clips are available below. Choose a clip, then press play; the player requests the stream only when you start it.</p>
+          <p>The featured clip is the original repository video from 10:43. Pick another archive clip below; playback starts on demand so the whole file is not preloaded.</p>
         </div>
         <VideoShowcase />
         <div className="streaming-note">
           <div><strong>For the smoothest playback of your 500 MB+ master video</strong><p>Upload it to YouTube as <em>Unlisted</em> and embed that player, or use Cloudflare Stream for adaptive-quality streaming. A large MP4 can still buffer on a slow connection even when served in chunks.</p></div>
-          <a href="https://studio.youtube.com/" target="_blank" rel="noreferrer">Upload privately on YouTube <ArrowUpRight aria-hidden="true" /></a>
+          <a href="https://studio.youtube.com/" target="_blank" rel="noreferrer">YouTube Studio · upload as Unlisted <ArrowUpRight aria-hidden="true" /></a>
         </div>
       </div>
     </section>
